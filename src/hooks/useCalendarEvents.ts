@@ -1,46 +1,52 @@
-import { useEffect, useState } from 'react';
-import { collection, query, where, onSnapshot } from 'firebase/firestore';
+import { useState, useEffect } from 'react';
 import { db } from '../services/firebase';
-import { CalendarEvent } from '../types';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
-export function useCalendarEvents(
-  apartmentId: string,
-  monthStart: string,
-  monthEnd: string
-) {
+export interface CalendarEvent {
+  id: string;
+  date: string;
+  status: string;
+  notes: string;
+}
+
+export function useCalendarEvents(apartmentId: string, from: string, to: string) {
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!apartmentId) {
-      setEvents([]);
-      setLoading(false);
-      return;
-    }
+    const fetchEvents = async () => {
+      if (!apartmentId) {
+        setLoading(false);
+        return;
+      }
 
-    const q = query(
-      collection(db, 'calendarEvents'),
-      where('apartmentId', '==', apartmentId),
-      where('date', '>=', monthStart),
-      where('date', '<=', monthEnd)
-    );
+      try {
+        const eventsRef = collection(db, 'apartments', apartmentId, 'calendarEvents');
+        const q = query(
+          eventsRef,
+          where('date', '>=', from),
+          where('date', '<=', to)
+        );
+        const querySnapshot = await getDocs(q);
+        const eventsList: CalendarEvent[] = [];
 
-    const unsub = onSnapshot(q, (snapshot) => {
-      const data = snapshot.docs.map(
-        (d) =>
-          ({
-            id: d.id,
-            ...d.data(),
-            createdAt: d.data().createdAt?.toDate?.() ?? new Date(),
-            updatedAt: d.data().updatedAt?.toDate?.() ?? new Date(),
-          } as CalendarEvent)
-      );
-      setEvents(data);
-      setLoading(false);
-    });
+        querySnapshot.forEach((doc) => {
+          eventsList.push({
+            id: doc.id,
+            ...doc.data(),
+          } as CalendarEvent);
+        });
 
-    return unsub;
-  }, [apartmentId, monthStart, monthEnd]);
+        setEvents(eventsList);
+      } catch (error) {
+        console.error('Error fetching calendar events:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, [apartmentId, from, to]);
 
   return { events, loading };
 }

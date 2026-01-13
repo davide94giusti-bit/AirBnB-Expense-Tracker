@@ -57,19 +57,17 @@ export async function getCalendarEvents(
 export async function occupyDatesForGuest(
   apartmentId: string,
   guestIds: string[],
-  checkIn: string, // ISO "2026-01-10"
-  checkOut: string // ISO "2026-01-15"
+  checkIn: string,
+  checkOut: string
 ): Promise<void> {
   const batch = writeBatch(db);
   const start = new Date(checkIn);
   const end = new Date(checkOut);
 
-  for (
-    let d = new Date(start);
-    d < end;
-    d.setDate(d.getDate() + 1)
-  ) {
-    const iso = d.toISOString().split('T');
+  
+
+  for (let d = new Date(start); d < end; d.setDate(d.getDate() + 1)) {
+    const iso = d.toISOString().split('T')[0];  // ✅ FIX: Get only the date part
     const eventId = `${apartmentId}_${iso}`;
     batch.set(doc(db, 'calendarEvents', eventId), {
       id: eventId,

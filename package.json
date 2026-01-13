@@ -12,8 +12,11 @@
   "dependencies": {
     "date-fns": "^4.1.0",
     "firebase": "^12.7.0",
+    "firebase-admin": "^13.6.0",
     "html2canvas": "^1.4.1",
     "lucide-react": "^0.562.0",
+    "otpauth": "^9.4.1",
+    "qrcode.react": "^4.2.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.12.0"

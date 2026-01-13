@@ -1,35 +1,49 @@
-import { useEffect, useState } from 'react';
-import { collection, query, where, onSnapshot } from 'firebase/firestore';
+import { useState, useEffect } from 'react';
 import { db } from '../services/firebase';
-import { Guest } from '../types';
+import { collection, getDocs } from 'firebase/firestore';
+
+export interface Guest {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  checkIn: string;
+  checkOut: string;
+  notes: string;
+}
 
 export function useGuests(apartmentId: string) {
   const [guests, setGuests] = useState<Guest[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!apartmentId) {
-      setGuests([]);
-      setLoading(false);
-      return;
-    }
+    const fetchGuests = async () => {
+      if (!apartmentId) {
+        setLoading(false);
+        return;
+      }
 
-    const q = query(collection(db, 'guests'), where('apartmentId', '==', apartmentId));
+      try {
+        const guestsRef = collection(db, 'apartments', apartmentId, 'guests');
+        const querySnapshot = await getDocs(guestsRef);
+        const guestsList: Guest[] = [];
 
-    const unsub = onSnapshot(q, (snapshot) => {
-      const data = snapshot.docs.map(
-        (d) =>
-          ({
-            id: d.id,
-            ...d.data(),
-            createdAt: d.data().createdAt?.toDate?.() ?? new Date(),
-          } as Guest)
-      );
-      setGuests(data);
-      setLoading(false);
-    });
+        querySnapshot.forEach((doc) => {
+          guestsList.push({
+            id: doc.id,
+            ...doc.data(),
+          } as Guest);
+        });
 
-    return unsub;
+        setGuests(guestsList);
+      } catch (error) {
+        console.error('Error fetching guests:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchGuests();
   }, [apartmentId]);
 
   return { guests, loading };

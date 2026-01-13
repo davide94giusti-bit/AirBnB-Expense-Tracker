@@ -1,0 +1,309 @@
+/* MONTHLY EXPORT MODAL */
+
+.export-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.export-modal-content {
+  background: #1a1a1a;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(59, 165, 216, 0.2);
+}
+
+.export-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid rgba(59, 165, 216, 0.1);
+  background: rgba(59, 165, 216, 0.05);
+}
+
+.export-modal-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #3ba5d8;
+}
+
+.export-modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.export-modal-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.export-modal-body {
+  padding: 24px;
+}
+
+/* Statistics Cards */
+.export-modal-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.export-modal-stat-card {
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  color: #ffffff;
+  border: 2px solid;
+  transition: all 0.2s ease;
+}
+
+.export-stat-free {
+  background: rgba(46, 204, 113, 0.1);
+  border-color: #2ecc71;
+}
+
+.export-stat-free:hover {
+  background: rgba(46, 204, 113, 0.15);
+  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.2);
+}
+
+.export-stat-occupied {
+  background: rgba(231, 76, 60, 0.1);
+  border-color: #e74c3c;
+}
+
+.export-stat-occupied:hover {
+  background: rgba(231, 76, 60, 0.15);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.2);
+}
+
+.export-stat-maintenance {
+  background: rgba(155, 89, 182, 0.1);
+  border-color: #9b59b6;
+}
+
+.export-stat-maintenance:hover {
+  background: rgba(155, 89, 182, 0.15);
+  box-shadow: 0 4px 12px rgba(155, 89, 182, 0.2);
+}
+
+.export-stat-cleaning {
+  background: rgba(243, 156, 18, 0.1);
+  border-color: #f39c12;
+}
+
+.export-stat-cleaning:hover {
+  background: rgba(243, 156, 18, 0.15);
+  box-shadow: 0 4px 12px rgba(243, 156, 18, 0.2);
+}
+
+.export-stat-label {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+.export-stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.export-stat-percent {
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+/* Occupancy Rate */
+.export-modal-occupancy {
+  background: linear-gradient(135deg, rgba(59, 165, 216, 0.1), rgba(59, 165, 216, 0.05));
+  border: 2px solid rgba(59, 165, 216, 0.3);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.export-occupancy-label {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.export-occupancy-value {
+  margin: 0 0 12px 0;
+  font-size: 48px;
+  font-weight: 700;
+  color: #3ba5d8;
+}
+
+.export-occupancy-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.export-occupancy-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3ba5d8, #2b8fc4);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* Export Section */
+.export-modal-section {
+  margin-bottom: 24px;
+}
+
+.export-modal-section-title {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.export-modal-buttons {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.export-modal-btn {
+  padding: 14px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.export-btn-csv {
+  background: #3ba5d8;
+  color: #ffffff;
+}
+
+.export-btn-csv:hover {
+  background: #2b8fc4;
+  box-shadow: 0 4px 12px rgba(59, 165, 216, 0.3);
+}
+
+.export-btn-json {
+  background: rgba(46, 204, 113, 0.15);
+  color: #2ecc71;
+  border: 1px solid #2ecc71;
+}
+
+.export-btn-json:hover {
+  background: rgba(46, 204, 113, 0.25);
+  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.2);
+}
+
+.export-btn-print {
+  background: rgba(155, 89, 182, 0.15);
+  color: #9b59b6;
+  border: 1px solid #9b59b6;
+}
+
+.export-btn-print:hover {
+  background: rgba(155, 89, 182, 0.25);
+  box-shadow: 0 4px 12px rgba(155, 89, 182, 0.2);
+}
+
+/* Footer */
+.export-modal-footer {
+  padding: 20px 24px;
+  border-top: 1px solid rgba(59, 165, 216, 0.1);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.export-modal-btn-close {
+  width: 100%;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #ffffff;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.export-modal-btn-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 480px) {
+  .export-modal-content {
+    max-width: 100%;
+  }
+
+  .export-modal-header {
+    padding: 16px;
+  }
+
+  .export-modal-header h2 {
+    font-size: 18px;
+  }
+
+  .export-modal-body {
+    padding: 16px;
+  }
+
+  .export-modal-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .export-occupancy-value {
+    font-size: 36px;
+  }
+
+  .export-modal-buttons {
+    grid-template-columns: 1fr;
+  }
+}

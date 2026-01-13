@@ -1,0 +1,238 @@
+/* src/components/Dashboard/Calendar/DayModal.css */
+
+.day-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.day-modal-content {
+  background: #1a1a1a;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  border: 1px solid #333;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.day-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid #333;
+  background: linear-gradient(135deg, #3ba5d8 0%, #2b8fc4 100%);
+}
+
+.day-modal-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.day-modal-close {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+}
+
+.day-modal-close:hover {
+  opacity: 0.7;
+}
+
+.day-modal-body {
+  padding: 24px;
+}
+
+.day-modal-section {
+  margin-bottom: 24px;
+}
+
+.day-modal-section:last-child {
+  margin-bottom: 0;
+}
+
+.day-modal-section label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.day-modal-status-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.day-modal-status-btn {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 2px solid #333;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: transparent;
+}
+
+.day-modal-status-free {
+  border-color: #2ecc71;
+  color: #2ecc71;
+}
+
+.day-modal-status-free:hover {
+  background: rgba(46, 204, 113, 0.1);
+}
+
+.day-modal-status-free.active {
+  background: #2ecc71;
+  color: #ffffff;
+  border-color: #2ecc71;
+}
+
+.day-modal-status-occupied {
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+.day-modal-status-occupied:hover {
+  background: rgba(231, 76, 60, 0.1);
+}
+
+.day-modal-status-occupied.active {
+  background: #e74c3c;
+  color: #ffffff;
+  border-color: #e74c3c;
+}
+
+.day-modal-status-maintenance {
+  border-color: #9b59b6;
+  color: #9b59b6;
+}
+
+.day-modal-status-maintenance:hover {
+  background: rgba(155, 89, 182, 0.1);
+}
+
+.day-modal-status-maintenance.active {
+  background: #9b59b6;
+  color: #ffffff;
+  border-color: #9b59b6;
+}
+
+.day-modal-status-cleaning {
+  border-color: #f39c12;
+  color: #f39c12;
+}
+
+.day-modal-status-cleaning:hover {
+  background: rgba(243, 156, 18, 0.1);
+}
+
+.day-modal-status-cleaning.active {
+  background: #f39c12;
+  color: #ffffff;
+  border-color: #f39c12;
+}
+
+.day-modal-textarea {
+  width: 100%;
+  padding: 12px;
+  background: #2a2a2a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.day-modal-textarea:focus {
+  outline: none;
+  border-color: #3ba5d8;
+  box-shadow: 0 0 0 3px rgba(59, 165, 216, 0.1);
+}
+
+.day-modal-textarea::placeholder {
+  color: #666;
+}
+
+.day-modal-footer {
+  display: flex;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid #333;
+  background: #0f0f0f;
+}
+
+.day-modal-btn-cancel,
+.day-modal-btn-save {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.day-modal-btn-cancel {
+  background: #333;
+  color: #ffffff;
+}
+
+.day-modal-btn-cancel:hover {
+  background: #444;
+}
+
+.day-modal-btn-save {
+  background: #3ba5d8;
+  color: #ffffff;
+}
+
+.day-modal-btn-save:hover {
+  background: #2b8fc4;
+}
+
+.day-modal-btn-save:active {
+  transform: scale(0.98);
+}
